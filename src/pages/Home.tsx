@@ -4,23 +4,41 @@ import DragonList from '../components/DragonList'
 import Loader from '../components/Loader'
 import ErrorMessage from '../components/ErrorMessage'
 import EmptyState from '../components/EmptyState'
-// import { fetchDragons } from '../services/dragonService'
+import { fetchDragons } from '../services/DragonService'
+import type { Dragon } from '../services/DragonService'
 
 export default function Home() {
-    const [dragons, setDragons] = useState([])
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
-    const [search, setSearch] = useState('')
+  const [dragons, setDragons] = useState<Dragon[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
+  const [search, setSearch] = useState<string>('')
 
-    // TODO: cargar dragones al montar
-    // TODO: Filtrar dragones
-    // TODO: Manejar estados
+  useEffect(() => {
+    const cargar = async () => {
+      try {
+        const data = await fetchDragons()
+        setDragons(data)
+      } catch (err) {
+        setError('Error al cargar los datos')
+      } finally {
+        setLoading(false)
+      }
+    }
+    cargar()
+  }, [])
 
-    return (
-        // aplicar tailwindcss
-        <div className="p-4">
-            <SearchBar onSearch={setSearch} />
-            {/* Mostrar Loader, ErrorMessage, EmptyState o DragonList según estado */}
-        </div>
-    )
+  const filtered = dragons.filter(d =>
+    d.name.toLowerCase().includes(search.toLowerCase())
+  )
+
+  if (loading) return <Loader />
+  if (error) return <ErrorMessage message={error} onRetry={() => window.location.reload()} />
+
+  return (
+    <div>
+      <h1 className="text-3xl font-bold text-center mb-6 text-yellow-400">DragonDex</h1>
+      <SearchBar onSearch={setSearch} />
+      {filtered.length === 0 ? <EmptyState /> : <DragonList dragons={filtered} />}
+    </div>
+  )
 }
