@@ -25,7 +25,8 @@ https://tgarcesm.github.io/examen-final-front/
 El archivo `Parte teorica final front.pdf` contiene las respuestas y resultado de la parte teórica del examen.
 
 ## Notas
-Se limpió la caché de npm (`npm cache clean --force`) para poder correr el proyecto correctamente con la versión instalada, ya que sin esto daba errores al compilar.
+- Se limpió la caché de npm (`npm cache clean --force`) para poder correr el proyecto correctamente con la versión instalada, ya que sin esto daba errores al compilar.
+- El workflow de GitHub Actions (`.github/workflows/deploy.yml`) fue tomado de un proyecto propio que ya tenía configurado el despliegue a GitHub Pages para dar una mejor entrega.
 
 ## Uso de íconos
 
