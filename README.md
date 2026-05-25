@@ -27,7 +27,7 @@ El archivo `Parte teorica final front.pdf` contiene las respuestas y resultado d
 ## Notas
 - Se limpió la caché de npm (`npm cache clean --force`) para poder correr el proyecto correctamente con la versión instalada, ya que sin esto daba errores al compilar.
 - El workflow de GitHub Actions (`.github/workflows/deploy.yml`) fue tomado de un proyecto propio que ya tenía configurado el despliegue a GitHub Pages para dar una mejor entrega.
-- Hay un error con el funcionamiento de GitHub Pages: la página puede aparecer en blanco al acceder. Se cambió de `BrowserRouter` a `HashRouter` para intentar solucionar problemas de enrutamiento pero sigue poniendo problema, el localhost funciona perfectamente.
+- GitHub Pages aparecía en blanco porque el source estaba en "Deploy from a branch", lo cual solo sirve archivos estáticos sin hacer build. La solución fue cambiar el deployment a GitHub Actions, ya que el proyecto necesita un paso de `npm run build` para compilar TypeScript y generar los archivos finales. La profe dio permiso de encontrar la solución de GitHub Pages después de la hora ya que no se tocaba el código del examen en sí.
 
 ## Uso de íconos
 
