@@ -1,32 +1,46 @@
 # DragonDex - Examen Final
 
-Catálogo de dragones usando PokéAPI.
+**Nombre:** Tomas Garcés
+
+## Descripción
+DragonDex es una aplicación web de catálogo interactivo que permite explorar una colección de criaturas (dragones), ver sus detalles como tipos, habilidades y estadísticas, buscarlos por nombre y guardarlos como favoritos. Es el examen final de Ingeniería Web.
+
+## Demo
+https://tgarcesm.github.io/examen-final-front/
+
+## Tecnologías
+- React + TypeScript + Vite
+- Tailwind CSS v4
+- React Router DOM v7
+- React Icons
+- Font Awesome (CDN)
+- PokéAPI
 
 ## Instalación
 1. Clonar el repositorio
 2. `npm install`
 3. `npm run dev`
 
-## Estructura
-El proyecto ya tiene la configuración base con Vite, React Router, Tailwind CSS y Font Awesome.
-Debes implementar la lógica en los archivos existentes según las instrucciones del examen.
+## Notas
+Se limpió la caché de npm (`npm cache clean --force`) para poder correr el proyecto correctamente con la versión instalada, ya que sin esto daba errores al compilar.
 
-# Use of fontAwesome
-```<i className="fas fa-thumbs-up fa-5x"></i>```
-All icons: https://fontawesome.com/search?ic=free-collection 
+## Uso de íconos
 
-# Use of react Icons
-example usage
+En este proyecto usamos **React Icons** para todos los íconos de la interfaz:
 
+```tsx
+import { FaHeart, FaRegHeart, FaDragon } from "react-icons/fa";
+
+// Ejemplo de uso en un componente
+<FaHeart className="text-red-500" />
 ```
-import { FaBeer } from "react-icons/fa";
 
-function Question() {
-  return (
-    <h3>
-      Lets go for a <FaBeer />?
-    </h3>
-  );
-}
+Todos los íconos disponibles: https://react-icons.github.io/react-icons/
+
+También tenemos **Font Awesome** cargado via CDN en `index.html`, disponible para usar con la sintaxis clásica si se necesita:
+
+```html
+<i className="fas fa-dragon"></i>
 ```
-All icons: https://react-icons.github.io/react-icons/
+
+Todos los íconos: https://fontawesome.com/search?ic=free-collection

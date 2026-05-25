@@ -12,7 +12,7 @@ export default function SearchBar({ onSearch }: Props) {
         type="text"
         placeholder="Buscar dragón..."
         onChange={(e) => onSearch(e.target.value)}
-        className="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-yellow-400 focus:outline-none transition-colors"
+        className="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-600 focus:border-blue-400 focus:outline-none"
       />
     </div>
   )

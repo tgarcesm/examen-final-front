@@ -46,46 +46,57 @@ export default function DragonDetail() {
 
   return (
     <div className="max-w-3xl mx-auto">
-      <Link to="/" className="inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-300 mb-6 transition-colors">
+      <Link to="/" className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 mb-6">
         <FaArrowLeft />
         Volver
       </Link>
 
-      <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+      <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
         <div className="flex flex-col md:flex-row items-center gap-6">
-          <img
-            src={image}
-            alt={dragon.name}
-            className="w-48 h-48 md:w-64 md:h-64 object-contain"
-          />
+          <img src={image} alt={dragon.name} className="w-48 h-48 object-contain" />
           <div className="flex-1 text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start gap-4 mb-4">
               <h1 className="text-3xl font-bold capitalize">{dragon.name}</h1>
-              <button
-                onClick={toggleFavorite}
-                className="text-2xl hover:scale-125 transition-transform"
-              >
-                {favorite ? (
-                  <FaHeart className="text-red-500" />
-                ) : (
-                  <FaRegHeart className="text-gray-400 hover:text-red-400" />
-                )}
+              <button onClick={toggleFavorite} className="text-2xl">
+                {favorite ? <FaHeart className="text-red-500" /> : <FaRegHeart className="text-gray-400" />}
               </button>
             </div>
 
             <div className="mb-4">
-              <h2 className="text-sm text-gray-400 uppercase mb-1">Tipos</h2>
+              <h2 className="text-sm text-gray-400 mb-1">Tipos</h2>
               <div className="flex gap-2 justify-center md:justify-start">
-                {dragon.types.map(t => (
-                  <span key={t.type.name} className="px-3 py-1 bg-yellow-400/20 text-yellow-400 rounded-full text-sm capitalize">
-                    {t.type.name}
-                  </span>
-                ))}
+                {dragon.types.map(t => {
+                  const colors: Record<string, string> = {
+                    fire: 'bg-red-500/20 text-red-400',
+                    water: 'bg-blue-500/20 text-blue-400',
+                    ice: 'bg-blue-400/20 text-blue-300',
+                    electric: 'bg-yellow-500/20 text-yellow-400',
+                    dark: 'bg-purple-900/20 text-purple-400',
+                    ghost: 'bg-purple-700/20 text-purple-300',
+                    dragon: 'bg-purple-800/20 text-purple-400',
+                    grass: 'bg-green-500/20 text-green-400',
+                    poison: 'bg-purple-500/20 text-purple-400',
+                    psychic: 'bg-pink-500/20 text-pink-400',
+                    flying: 'bg-sky-400/20 text-sky-300',
+                    fighting: 'bg-red-700/20 text-red-400',
+                    ground: 'bg-amber-600/20 text-amber-400',
+                    rock: 'bg-stone-500/20 text-stone-400',
+                    bug: 'bg-lime-500/20 text-lime-400',
+                    steel: 'bg-slate-400/20 text-slate-300',
+                    fairy: 'bg-pink-400/20 text-pink-300',
+                    normal: 'bg-gray-400/20 text-gray-300',
+                  }
+                  return (
+                    <span key={t.type.name} className={`px-3 py-1 rounded-full text-sm capitalize ${colors[t.type.name] || 'bg-gray-400/20 text-gray-300'}`}>
+                      {t.type.name}
+                    </span>
+                  )
+                })}
               </div>
             </div>
 
-            <div className="mb-4">
-              <h2 className="text-sm text-gray-400 uppercase mb-1">Habilidades</h2>
+            <div>
+              <h2 className="text-sm text-gray-400 mb-1">Habilidades</h2>
               <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                 {dragon.abilities.map(a => (
                   <span key={a.ability.name} className="px-3 py-1 bg-gray-700 rounded-full text-sm capitalize">
@@ -97,19 +108,13 @@ export default function DragonDetail() {
           </div>
         </div>
 
-        <div className="mt-6">
-          <h2 className="text-sm text-gray-400 uppercase mb-3">Estadísticas</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="mt-6 border-t border-gray-700 pt-6">
+          <h2 className="text-sm text-gray-400 mb-3">Estadísticas</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {dragon.stats.map(s => (
-              <div key={s.stat.name} className="flex items-center gap-3">
-                <span className="text-sm capitalize w-32 text-gray-300">{s.stat.name}</span>
-                <div className="flex-1 bg-gray-700 rounded-full h-3">
-                  <div
-                    className="bg-yellow-400 h-3 rounded-full transition-all"
-                    style={{ width: `${Math.min(100, (s.base_stat / 150) * 100)}%` }}
-                  ></div>
-                </div>
-                <span className="text-sm font-semibold w-8 text-right">{s.base_stat}</span>
+              <div key={s.stat.name} className="bg-gray-700 rounded-lg p-3 text-center">
+                <span className="text-xs text-gray-400 capitalize">{s.stat.name}</span>
+                <p className="text-xl font-bold text-blue-400">{s.base_stat}</p>
               </div>
             ))}
           </div>

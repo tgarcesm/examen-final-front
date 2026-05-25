@@ -36,7 +36,8 @@ export default function Home() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-center mb-6 text-yellow-400">DragonDex</h1>
+      <h1 className="text-3xl font-bold text-center mb-2 text-blue-400">DragonDex</h1>
+      <p className="text-sm text-gray-400 text-center mb-6">Asociación Internacional de Criaturas Míticas</p>
       <SearchBar onSearch={setSearch} />
       {filtered.length === 0 ? <EmptyState /> : <DragonList dragons={filtered} />}
     </div>
